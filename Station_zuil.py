@@ -1,13 +1,12 @@
 name = input ('')
 
-if 
 
 
 
 
  
 DocViewer
-Pagina's
+Pagina_s
 Arnhem
 Almere
 Amersfoort
