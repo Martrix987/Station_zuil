@@ -1,5 +1,6 @@
 import traceback, collections
 
+
 #Als de standaard afwijking kleiner word dan nul moet je hem automatisch 0 maken.
 #Als km > 50 dan *0.60 + 15.
 #Als kleiner is dan 50 afstandKM * 0.80.
@@ -14,7 +15,6 @@ def standaardprijs(afstandKM):
         else:
             afstandKM = afstandKM * 0.80
             return afstandKM
-
 
 
 
@@ -35,23 +35,6 @@ def ritprijs(leeftijd, weekendrit, afstandKM):
         ritprijs = ritprijs * 0.60
     
     return ritprijs
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
