@@ -1,24 +1,34 @@
 import datetime
-from textwrap import fill
-def klacht():
-    while Invullen is True:
-        naam = input('Voer hier uw naam in: ')
 
-        #verander het woord klacht want het mag ook postief
-        if naam == (''):
-            print('U heeft er voor gekozen om uw klacht anoniem in te dienen.')
-            klacht = input('U kan hier uw klacht anoniem indienen, (de klacht mag uit maximaal 140 karakters bestaan): ')
-            if len(klacht) < 140:
-                print('U heeft te veel karakters gebruikt, probeer het opnieuw')
-                return Invullen is True
-            else:
-                return Invullen is False
+
+def klacht():
+    naam = input('Voer hier uw naam in: ')
+    #verander het woord klacht want het mag ook postief --> opinie
+    if naam == (''):
+        print('U heeft er voor gekozen om uw opinie anoniem in te dienen.')
+        opinie = input('U kan hier uw opinie anoniem indienen, (de opinie mag uit maximaal 140 karakters bestaan): ')
+        if len(opinie) < 140:
+            print('U heeft te veel karakters gebruikt, probeer het opnieuw')
+            break
         else:
-            print('Goedendag,', naam, 'U voert uw klacht in onder uw eigen naam.')
-            klacht = input('U kan hier uw klacht openbaar indienen, (de klacht mag uit maximaal 140 karakters bestaan): ')
-            if len(klacht) < 140:
-                print('U heeft te veel karakters gebruikt, probeer het opnieuw')
-                return Invullen is True
-            else:
-                return Invullen is False
+            return naam, opinie
+            
+    else:
+        print('Goedendag,', naam, 'U voert uw opinie in onder uw eigen naam.')
+        opinie = input('U kan hier uw opinie openbaar indienen, (de opinie mag uit maximaal 140 karakters bestaan): ')
+        if len(opinie) < 140:
+            print('U heeft te veel karakters gebruikt, probeer het opnieuw')
+            break
+        else:
+            return naam, opinie
+
+klacht()
+
+
+
+
+
+
+
+
             
