@@ -1,7 +1,8 @@
 import datetime
+import random
 
 
-def klacht():
+def opinie():
     naam = input('Voer hier uw naam in: ')
     #verander het woord klacht want het mag ook postief --> opinie
     if naam == (''):
@@ -22,7 +23,7 @@ def klacht():
         else:
             return naam, opinie
 
-klacht()
+opinie()
 
 
 
