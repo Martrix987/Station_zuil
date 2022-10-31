@@ -2,6 +2,11 @@ import datetime
 import random
 
 
+
+stations = ['Amsterdam', 'Utrecht', 'Leiden']
+print(random.choice(stations))
+
+
 def opinie():
     naam = input('Voer hier uw naam in: ')
     #verander het woord klacht want het mag ook postief --> opinie
@@ -11,7 +16,7 @@ def opinie():
         if len(opinie) > 140 or opinie.find('/') or naam.find('/'):
             print('U heeft te veel karakters gebruikt of een / gebruikt, probeer het opnieuw')
         else:
-            return False, opinie
+            return 'anoniem', opinie
             
     else:
         print('Goedendag,', naam, 'U voert uw opinie in onder uw eigen naam.')
@@ -21,11 +26,16 @@ def opinie():
         else:
             return naam, opinie
 
-print(opinie())
+naam_bericht = opinie()
+datum = 0
 
+
+#stuur naar sql
+print(naam_bericht)
+print(datum)
+print(stations)
 
 #vraag voor docent hoe fliter ik op /
-
 
 
 
