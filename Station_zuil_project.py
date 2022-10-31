@@ -27,7 +27,8 @@ print(opinie())
 #vraag voor docent hoe fliter ik op /
 
 
-
+random.choice()
+stations = ('Amsterdam', 'Utrecht', 'Leiden')
 
 
             
