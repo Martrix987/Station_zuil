@@ -1,4 +1,4 @@
-import psycopg2
+'''import psycopg2
 
 #verbind met de database 
 con = psycopg2.connect(
@@ -22,7 +22,7 @@ for r in rows:
 #sluit de verbindig en de cursor
 cur.close
 con.close
-
+'''
 
 
 

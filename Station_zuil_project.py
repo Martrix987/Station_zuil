@@ -29,8 +29,10 @@ def opinie():
             return naam, bericht
 
 naam, bericht = opinie()
-datum_millisecond = datetime.datetime.now()
-datum = datum_millisecond.replace(microsecond=0)
+
+'''_millisecond''' 
+datum = datetime.datetime.now()
+#! datum = datum_millisecond.replace(microsecond=0)
 
 
 #stuur naar sql
