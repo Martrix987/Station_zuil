@@ -9,11 +9,11 @@ print(random.choice(stations))
 
 def opinie():
     naam = input('Voer hier uw naam in: ')
-    #verander het woord klacht want het mag ook postief --> opinie
+    #hoe / te vinden?
     if naam == ('') or naam == (' '):
         print('U heeft er voor gekozen om uw opinie anoniem in te dienen.')
         opinie = input('u kan hier uw opinie anoniem indienen, (de opinie mag uit maximaal 140 karakters bestaan en geen: /): ')
-        if len(opinie) > 140 or opinie.find('/') or naam.find('/'):
+        if len(opinie) > 140 or opinie.find('/') or naam.find('/') or len(naam) > 200:
             print('U heeft te veel karakters gebruikt of een / gebruikt, probeer het opnieuw')
         else:
             return 'anoniem', opinie
@@ -21,7 +21,7 @@ def opinie():
     else:
         print('Goedendag,', naam, 'U voert uw opinie in onder uw eigen naam.')
         opinie = input('U kan hier uw opinie openbaar indienen, (de opinie mag uit maximaal 140 karakters bestaan): ')
-        if len(opinie) > 140 or opinie == '/' or naam == '/':
+        if len(opinie) > 140 or opinie == '/' or naam == '/' or len(naam) > 200:
             print('U heeft te veel karakters gebruikt of een / gebruikt, probeer het opnieuw')
         else:
             return naam, opinie
