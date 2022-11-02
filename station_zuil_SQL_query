@@ -2,20 +2,23 @@
 -------------------------------------------------------------------------------------------------------------------------------------
 drop table if exists gebruikers_invoer cascade;
 create table gebruikers_invoer (
-    datumtijd_bericht   timestamp     primary key,
+    bericht_id          bigserial     primary key,
     naam        	    varchar       ,
 	bericht      	    varchar       ,
-	station     	    varchar       
-    );
+	station     	    varchar       ,
+    datumtijd_bericht   timestamp
+);
 
 
 drop table if exists moderatie cascade;
 create table moderatie (
-    datumtijd_beoordeling  	timestamp 	primary key,
-    goedkeuring         	integer   ,
+    mod_id               	bigserial 	primary key,
+    goedkeuring         	integer     default 0,
 	naam_mod     	        varchar   ,   
 	email	                varchar   ,
-    datumtijd_bericht       timestamp   
+    datumtijd_beoordeling   timestamp ,
+    bericht_id              bigserial
+    
     );
 
 
@@ -27,17 +30,17 @@ create table station_service (
 	lift         	        BOOLEAN   not null,
 	wc  	                BOOLEAN   not null,
     laaden_lossen           BOOLEAN   not null,
-    datumtijd_beoordeling   timestamp   
+    mod_id                  bigserial   
     );
 
 
 alter table moderatie add constraint link1 
-foreign key (datumtijd_bericht) 
-references gebruikers_invoer (datumtijd_bericht);
+foreign key (bericht_id) 
+references gebruikers_invoer (bericht_id);
 
 alter table station_service add constraint link2
-foreign key (datumtijd_beoordeling) 
-references moderatie (datumtijd_beoordeling);
+foreign key (mod_id) 
+references moderatie (mod_id);
 
 --inserts
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -120,3 +123,8 @@ FROM gebruikers_invoer
 WHERE 
 ORDER BY datumtijd_bericht ASC DESC;
 
+
+
+
+
+--bigserial
