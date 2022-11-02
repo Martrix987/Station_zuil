@@ -4,47 +4,19 @@ import psycopg2
 import datetime
 
 
-print('\n \n \n \n')
-
-
-
+print('\n')
 connection_string = "host='localhost' dbname='station_zuil_database' user='postgres' password='128256'"
 conn = psycopg2.connect(connection_string) 
-cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) # DictCursor, not the default cursor!
+cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
 query = """SELECT     bericht
            FROM       gebruikers_invoer   g, 
                       moderatie           m
            where      g.bericht_id = m.bericht_id
            and      (  goedkeuring = 0 or goedkeuring is NULL )
            ;"""
-
-
-
 cursor.execute(query)
 print(cursor.fetchall())
 conn.close()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -72,7 +44,6 @@ conn = psycopg2.connect(connection_string)
 cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
 cursor.execute("INSERT INTO moderatie (datumtijd_beoordeling, naam, bericht, station) VALUES (%s, %s, %s, %s)", (datum_tijd, keuring, naam_moderator, email_moderator))
-
 
 conn.commit()
 cursor.close()
