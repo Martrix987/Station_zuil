@@ -118,5 +118,5 @@ SELECT TOP (5)
 datumtijd_bericht
 FROM gebruiksers_invoer
 WHERE 
-ORDER BY expression ASC DESC;
+ORDER BY datumtijd_bericht ASC DESC;
 
