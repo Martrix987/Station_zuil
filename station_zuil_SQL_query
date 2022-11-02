@@ -12,7 +12,7 @@ create table gebruiksers_invoer (
 drop table if exists moderatie cascade;
 create table moderatie (
     datumtijd_beoordeling  	timestamp 	primary key,
-    goedkeuring         	BOOLEAN   ,
+    goedkeuring         	integer   ,
 	naam_mod     	        varchar   ,   
 	email	                varchar   ,
     datumtijd_bericht       timestamp   
