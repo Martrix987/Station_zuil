@@ -113,3 +113,10 @@ where                 --filteren op boolean leeg van goekeuring
                         -- alleen de 5 meest recenten
 
 
+
+SELECT TOP (5)
+datumtijd_bericht
+FROM gebruiksers_invoer
+WHERE 
+ORDER BY expression ASC DESC;
+
