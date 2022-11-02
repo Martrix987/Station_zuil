@@ -1,3 +1,4 @@
+from sqlite3 import connect
 import psycopg2
 import psycopg2.extras
 import datetime
@@ -48,18 +49,9 @@ connection_string = "host='localhost' dbname='station_zuil_database' user='postg
 conn = psycopg2.connect(connection_string) 
 cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
-query =""" 
+cursor.execute("INSERT INTO gebruiksers_invoer (datumtijd_bericht, naam, bericht, station) VALUES (%s, %s, %s, %s)", (datum, naam, bericht, random_station))
 
-;"""
-
-
-
-cursor.execute('INSERT INTO gebruiksers_invoer VALUES (%s, %s, %s, %s)', (datum, naam, bericht, random_station))
-cursor.execute('INSERT INTO gebruiksers_invoer VALUES (%s,)', (naam))
-
-
-
-print(cursor.fetchone())
+conn.commit()
 cursor.close()
 conn.close()
 
