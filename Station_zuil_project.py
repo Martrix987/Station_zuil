@@ -1,4 +1,3 @@
-from sqlite3 import connect
 import psycopg2
 import psycopg2.extras
 import datetime
@@ -12,13 +11,13 @@ random_station = random.choice(stations)
 
 def opinie():
     naam = str(input('Voer hier uw naam in: '))
-    #hoe / te vinden?
     if naam == ('') or naam == (' '):
         print('U heeft er voor gekozen om uw bericht anoniem in te dienen.')
         bericht = input('u kan hier uw bericht anoniem indienen, (de bericht mag uit maximaal 140 karakters bestaan en geen: /): ')
 
-        if len(bericht) > 140: #or bericht.find('/') or naam.find('/'):
-            print('U heeft te veel karakters gebruikt of een / gebruikt, probeer het opnieuw')
+# hier wordt een foutmelding gegeven als het bericht of de naam te lang is 
+        if len(bericht) > 140 or len(naam) > 45:
+            print('U heeft te veel karakters gebruikt voor uw naam of uw bericht, probeer het opnieuw')
         else:
             naam = 'anoniem'
             return naam, bericht
@@ -26,30 +25,29 @@ def opinie():
     else:
         print('Goedendag,', naam, 'U voert uw bericht in onder uw eigen naam.')
         bericht = input('U kan hier uw bericht openbaar indienen, (de bericht mag uit maximaal 140 karakters bestaan): ')
-        if len(bericht) > 140 or len(naam) > 200:# or bericht == '/' or naam == '/' 
+        if len(bericht) > 140 or len(naam) > 45: 
             print('U heeft te veel karakters gebruikt of een / gebruikt, probeer het opnieuw')
         else:
             return naam, bericht
 
+#de ingevulde en goedgekeurde informatie word uit de defenitie gehaald en in een variable gezet
 naam, bericht = opinie()
-
-'''_millisecond''' 
+#de datum en de tijd worden opgevraagd en in de variable datum geplaatst (tijd is tot 4 honderste seconde)
 datum = datetime.datetime.now()
-#! datum = datum_millisecond.replace(microsecond=0)
 
-
-#stuur naar sql
+#Dit wordt gestuurd naar de database
 print(naam)
 print(bericht)
 print(datum)
 print(random_station)
 
-
+# Hier wordt de connectie gemaakt met de database met de bijbehorden identiale
 connection_string = "host='localhost' dbname='station_zuil_database' user='postgres' password='128256'"
 conn = psycopg2.connect(connection_string) 
 cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
 cursor.execute("INSERT INTO gebruiksers_invoer (datumtijd_bericht, naam, bericht, station) VALUES (%s, %s, %s, %s)", (datum, naam, bericht, random_station))
+
 
 conn.commit()
 cursor.close()
@@ -58,7 +56,6 @@ conn.close()
     
 
 
-#vraag voor docent hoe fliter ik op /
 
 
 
