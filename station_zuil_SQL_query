@@ -99,10 +99,17 @@ VALUES
 
 
 
-insert into gebruiksers_invoer(naam, bericht, station, datumtijd) values(naam, bericht, datum, random_station)
 
 
 -------------------------------------------------------------------------------------------------------------------------------------
-insert into transactie (transactienummer, datum, tijd, bonuskaartnummer, filiaalnummer) values (1002, '2020-01-03'::date, '12:25'::time, 65472335, 48);
+
+
+--wat wil ik:
+--ik wil chekken of iets al gemodereert is
+
+select  goekeuring, naam, bericht, 
+from    gebruiksers_invoer, moderatie
+where                 --filteren op boolean leeg van goekeuring
+                        -- alleen de 5 meest recenten
 
 
