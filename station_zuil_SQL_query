@@ -3,9 +3,9 @@
 drop table if exists gebruiksers_invoer cascade;
 create table gebruiksers_invoer (
     datumtijd_bericht   timestamp     primary key,
-    naam        	    varchar       not null,
-	bericht      	    varchar       not null,
-	station     	    varchar       not null
+    naam        	    varchar       ,
+	bericht      	    varchar       ,
+	station     	    varchar       
     );
 
 
