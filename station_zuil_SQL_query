@@ -1,7 +1,7 @@
 --Query
 -------------------------------------------------------------------------------------------------------------------------------------
-drop table if exists gebruiksers_invoer cascade;
-create table gebruiksers_invoer (
+drop table if exists gebruikers_invoer cascade;
+create table gebruikers_invoer (
     datumtijd_bericht   timestamp     primary key,
     naam        	    varchar       ,
 	bericht      	    varchar       ,
@@ -33,7 +33,7 @@ create table station_service (
 
 alter table moderatie add constraint link1 
 foreign key (datumtijd_bericht) 
-references gebruiksers_invoer (datumtijd_bericht);
+references gebruikers_invoer (datumtijd_bericht);
 
 alter table station_service add constraint link2
 foreign key (datumtijd_beoordeling) 
@@ -108,7 +108,7 @@ VALUES
 --ik wil chekken of iets al gemodereert is
 
 select  goekeuring, naam, bericht, 
-from    gebruiksers_invoer, moderatie
+from    gebruikers_invoer, moderatie
 where                 --filteren op boolean leeg van goekeuring
                         -- alleen de 5 meest recenten
 
@@ -116,7 +116,7 @@ where                 --filteren op boolean leeg van goekeuring
 
 SELECT TOP (5)
 datumtijd_bericht
-FROM gebruiksers_invoer
+FROM gebruikers_invoer
 WHERE 
 ORDER BY datumtijd_bericht ASC DESC;
 
