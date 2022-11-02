@@ -20,6 +20,16 @@ conn.close()
 
 
 
+
+#SELECT TOP(5) percent
+#datumtijd_bericht, naam
+#FROM gebruiksers_invoer
+#WHERE naam = marnix
+#--ORDER BY datumtijd_bericht ASC DESC;
+
+
+
+
 '''
 connection_string = "host='localhost' dbname='station_zuil_database' user='postgres' password='128256'"
 conn = psycopg2.connect(connection_string) 
