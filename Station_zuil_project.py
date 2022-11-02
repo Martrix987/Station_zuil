@@ -47,17 +47,14 @@ print(random_station)
 connection_string = "host='localhost' dbname='station_zuil_database' user='postgres' password='128256'"
 conn = psycopg2.connect(connection_string) 
 cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) # DictCursor, not the default cursor!
-query = """ 
 
-insert into gebruiksers_invoer(naam, bericht, station, datumtijd) values(naam, bericht, datum, random_station)
-
-
+query =""" 
 
 ;"""
 
 
 
-cursor.execute(query)
+cursor.execute('INSERT INTO gebruiksers_invoer VALUES (%s, %s, %s, %s)', (datum, naam, bericht, random_station))
 records = cursor.fetchall()
 conn.close()
 
