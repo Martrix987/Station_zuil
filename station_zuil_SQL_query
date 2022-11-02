@@ -2,22 +2,20 @@
 -------------------------------------------------------------------------------------------------------------------------------------
 drop table if exists gebruiksers_invoer cascade;
 create table gebruiksers_invoer (
-    gebruikersnummer	integer    	  primary key,
+    datumtijd_bericht   timestamp     primary key,
     naam        	    varchar       not null,
-	opinie      	    varchar       not null,
-	station     	    varchar       not null,
-	datumtijd	        timestamp     not null
+	bericht      	    varchar       not null,
+	station     	    varchar       not null
     );
 
 
 drop table if exists moderatie cascade;
 create table moderatie (
-    moderatienummer  	    integer 	primary key,
+    datumtijd_beoordeling  	timestamp 	primary key,
     goedkeuring         	BOOLEAN   ,
-	datumtijd_beoordeling   timestamp ,
 	naam_mod     	        varchar   ,   
 	email	                varchar   ,
-    gebruikersnummer        integer   
+    datumtijd_bericht       timestamp   
     );
 
 
@@ -29,17 +27,17 @@ create table station_service (
 	lift         	        BOOLEAN   not null,
 	wc  	                BOOLEAN   not null,
     laaden_lossen           BOOLEAN   not null,
-    moderatienummer         integer   
+    datumtijd_beoordeling   timestamp   
     );
 
 
 alter table moderatie add constraint link1 
-foreign key (gebruikersnummer) 
-references gebruiksers_invoer (gebruikersnummer);
+foreign key (datumtijd_bericht) 
+references gebruiksers_invoer (datumtijd_bericht);
 
 alter table station_service add constraint link2
-foreign key (moderatienummer) 
-references moderatie (moderatienummer);
+foreign key (datumtijd_beoordeling) 
+references moderatie (datumtijd_beoordeling);
 
 --inserts
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -101,9 +99,10 @@ VALUES
 
 
 
-
+insert into gebruiksers_invoer(naam, bericht, station, datumtijd) values(naam, bericht, datum, random_station)
 
 
 -------------------------------------------------------------------------------------------------------------------------------------
+insert into transactie (transactienummer, datum, tijd, bonuskaartnummer, filiaalnummer) values (1002, '2020-01-03'::date, '12:25'::time, 65472335, 48);
 
 

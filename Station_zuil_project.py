@@ -1,3 +1,5 @@
+import psycopg2
+import psycopg2.extras
 import datetime
 import random
 
@@ -40,6 +42,28 @@ print(naam)
 print(bericht)
 print(datum)
 print(random_station)
+
+
+connection_string = "host='localhost' dbname='station_zuil_database' user='postgres' password='128256'"
+conn = psycopg2.connect(connection_string) 
+cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) # DictCursor, not the default cursor!
+query = """ 
+
+insert into gebruiksers_invoer(naam, bericht, station, datumtijd) values(naam, bericht, datum, random_station)
+
+
+
+;"""
+
+
+
+cursor.execute(query)
+records = cursor.fetchall()
+conn.close()
+
+
+    
+
 
 #vraag voor docent hoe fliter ik op /
 

@@ -1,5 +1,4 @@
 import psycopg2.extras
-import psycopg2 # import changed!
 
 
 connection_string = "host='localhost' dbname='station_zuil_database' user='postgres' password='128256'"
