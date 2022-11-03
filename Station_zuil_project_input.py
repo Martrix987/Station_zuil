@@ -37,7 +37,7 @@ datum = datetime.datetime.now()
 
 
 #Dit wordt gestuurd naar de database
-print(naam)
+print('\n', naam)
 print(bericht)
 print(datum)
 print(random_station, '\n')

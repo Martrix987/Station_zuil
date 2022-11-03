@@ -122,3 +122,5 @@ ORDER BY datumtijd_bericht ASC DESC;
 --nieuwe tabel met naam email en id van mod
 --datumtijd beoordeling enzo maak je nullable zodat die later ingevoerd kan worden
 --station 1 op veel
+
+--            ORDER BY datumtijd_bericht asc
