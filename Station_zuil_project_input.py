@@ -49,7 +49,7 @@ cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
 #keuring = 0
 #cursor.execute("INSERT INTO moderatie (goekeuring) VALUE (%s)", (keuring))
-cursor.execute("INSERT INTO gebruikers_invoer (datumtijd_bericht, naam, bericht, station) VALUES (%s, %s, %s, %s)", (datum, naam, bericht, random_station))
+cursor.execute("INSERT INTO bericht (datumtijd_bericht, naam, bericht, station) VALUES (%s, %s, %s, %s)", (datum, naam, bericht, random_station))
 
 conn.commit()
 cursor.close()

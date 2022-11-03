@@ -8,7 +8,7 @@ connection_string = "host='localhost' dbname='station_zuil_database' user='postg
 conn = psycopg2.connect(connection_string) 
 cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
 query = """SELECT     bericht
-           FROM       gebruikers_invoer   g, 
+           FROM       bericht   g, 
                       moderatie           m
            where      g.bericht_id = m.bericht_id
            and      (  goedkeuring = 0 or goedkeuring is NULL )

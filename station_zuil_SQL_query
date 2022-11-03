@@ -1,25 +1,26 @@
 --Query
 -------------------------------------------------------------------------------------------------------------------------------------
-drop table if exists gebruikers_invoer cascade;
-create table gebruikers_invoer (
-    bericht_id          bigserial     primary key,
-    naam        	    varchar       ,
-	bericht      	    varchar       ,
-	station     	    varchar       ,
-    datumtijd_bericht   timestamp
+drop table if exists bericht cascade;
+create table bericht (
+    bericht_id              bigserial     primary key,
+    naam        	        varchar       ,
+	bericht      	        varchar       ,
+	station     	        varchar       ,
+    datumtijd_bericht       timestamp     ,
+    goedkeuring         	integer     default 0,
+    datumtijd_beoordeling   timestamp     ,
+    mod_id                  bigserial     ,
+    station_stad  	        varchar
+
 );
 
 
 drop table if exists moderatie cascade;
 create table moderatie (
     mod_id               	bigserial 	primary key,
-    goedkeuring         	integer     default 0,
 	naam_mod     	        varchar   ,   
-	email	                varchar   ,
-    datumtijd_beoordeling   timestamp ,
-    bericht_id              bigserial
-    
-    );
+	email	                varchar   
+);
 
 
 drop table if exists station_service cascade;
@@ -29,18 +30,17 @@ create table station_service (
 	ov_fiets                BOOLEAN   not null,
 	lift         	        BOOLEAN   not null,
 	wc  	                BOOLEAN   not null,
-    laaden_lossen           BOOLEAN   not null,
-    mod_id                  bigserial   
-    );
+    laaden_lossen           BOOLEAN   not null
+);
 
 
-alter table moderatie add constraint link1 
-foreign key (bericht_id) 
-references gebruikers_invoer (bericht_id);
-
-alter table station_service add constraint link2
+alter table bericht add constraint link1 
 foreign key (mod_id) 
 references moderatie (mod_id);
+
+alter table bericht add constraint link2
+foreign key (station_stad) 
+references station_service (station_stad);
 
 --inserts
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -105,7 +105,7 @@ VALUES
 
 SELECT TOP (5)
 datumtijd_bericht
-FROM gebruikers_invoer
+FROM bericht
 WHERE 
 ORDER BY datumtijd_bericht ASC DESC;
 
@@ -114,3 +114,10 @@ ORDER BY datumtijd_bericht ASC DESC;
 
 
 --bigserial
+
+
+
+-- 1 op 1
+--nieuwe tabel met naam email en id van mod
+--datumtijd beoordeling enzo maak je nullable zodat die later ingevoerd kan worden
+--station 1 op veel
