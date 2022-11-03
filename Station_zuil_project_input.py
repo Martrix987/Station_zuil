@@ -35,19 +35,19 @@ naam, bericht = opinie()
 #de datum en de tijd worden opgevraagd en in de variable datum geplaatst (tijd is tot 4 honderste seconde)
 datum = datetime.datetime.now()
 
-keuring = 0
 
 #Dit wordt gestuurd naar de database
 print(naam)
 print(bericht)
 print(datum)
-print(random_station)
+print(random_station, '\n')
 
 # Hier wordt de connectie gemaakt met de database met de bijbehorden identiale
 connection_string = "host='localhost' dbname='station_zuil_database' user='postgres' password='128256'"
 conn = psycopg2.connect(connection_string) 
 cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
+#keuring = 0
 #cursor.execute("INSERT INTO moderatie (goekeuring) VALUE (%s)", (keuring))
 cursor.execute("INSERT INTO gebruikers_invoer (datumtijd_bericht, naam, bericht, station) VALUES (%s, %s, %s, %s)", (datum, naam, bericht, random_station))
 
