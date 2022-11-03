@@ -7,11 +7,10 @@ create table bericht (
 	bericht      	        varchar       ,
 	station     	        varchar       ,
     datumtijd_bericht       timestamp     ,
-    goedkeuring         	integer     default 0,
+    goedkeuring         	integer       default 0,
     datumtijd_beoordeling   timestamp     ,
-    mod_id                  bigserial     ,
-    station_stad  	        varchar
-
+    mod_id                  integer     ,
+    station_stad  	        varchar       
 );
 
 
@@ -44,6 +43,8 @@ references station_service (station_stad);
 
 --inserts
 -------------------------------------------------------------------------------------------------------------------------------------
+insert into moderatie (naam_mod, email) values ('admin', 'marnixjahendriks@gmail.com');
+
 
 INSERT INTO station_service (
     station_stad, land, ov_fiets, lift, wc, laaden_lossen)

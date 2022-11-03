@@ -8,10 +8,9 @@ connection_string = "host='localhost' dbname='station_zuil_database' user='postg
 conn = psycopg2.connect(connection_string) 
 cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
 query = """SELECT     bericht
-           FROM       bericht   g, 
-                      moderatie           m
-           where      g.bericht_id = m.bericht_id
-           and      (  goedkeuring = 0 or goedkeuring is NULL )
+           FROM       bericht      g, 
+                      moderatie    m
+           where      (goedkeuring = 0 or goedkeuring is NULL)
            ;"""
 cursor.execute(query)
 print(cursor.fetchall())
@@ -21,11 +20,8 @@ conn.close()
 
 
 
-
-
 test_keuring = int(input('\nControleer of de tekst hierboven fatsoenlijk is, indien de tekst fatsoenlijk is type 1 maar als de tekst niet fatsoenlijk is typ 2 \n: '))
-naam_moderator = input('Voer hier de naam van de moderator in: ')
-email_moderator = input('Voer hier het email van de moderator in: ')
+mod_id = int(input('\nVoer hier uw modderator ID in. '))
 datum_tijd = datetime.datetime.now()
 if test_keuring == 1:
     print('Oke het bericht wordt nu goed gekeurd.')
@@ -42,7 +38,7 @@ connection_string = "host='localhost' dbname='station_zuil_database' user='postg
 conn = psycopg2.connect(connection_string) 
 cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
-cursor.execute("INSERT INTO moderatie (datumtijd_beoordeling, naam, bericht, station) VALUES (%s, %s, %s, %s)", (datum_tijd, keuring, naam_moderator, email_moderator))
+cursor.execute("update INTO bericht (datumtijd_beoordeling, goedkeuring, mod_id, station) VALUES (%s, %s, %s)", (datum_tijd, keuring, mod_id))
 
 conn.commit()
 cursor.close()
