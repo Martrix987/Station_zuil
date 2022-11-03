@@ -39,7 +39,7 @@ connection_string = "host='localhost' dbname='station_zuil_database' user='postg
 conn = psycopg2.connect(connection_string) 
 cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
-cursor.execute("update bericht set datumtijd_beoordeling = '2022-11-02 010:35:23', goedkeuring = 0, mod_id = 1 WHERE bericht = (%s)", (bericht))
+cursor.execute("update bericht set datumtijd_beoordeling = '2022-11-02 010:35:23', goedkeuring = 1, mod_id = 1 WHERE bericht = 'hello world1'")
 #cursor.execute("update INTO bericht (datumtijd_beoordeling, goedkeuring, mod_id, station) VALUES (%s, %s, %s)", (datum_tijd, keuring, mod_id))
 
 conn.commit()
