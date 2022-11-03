@@ -45,13 +45,6 @@ references moderatie (mod_id);
 --inserts
 -------------------------------------------------------------------------------------------------------------------------------------
 
-
-
-
-
-
-
-
 INSERT INTO station_service (
     station_stad, land, ov_fiets, lift, wc, laaden_lossen)
 VALUES
@@ -107,14 +100,7 @@ VALUES
 -------------------------------------------------------------------------------------------------------------------------------------
 
 
---wat wil ik:
---ik wil chekken of iets al gemodereert is
-
-select  goekeuring, naam, bericht, 
-from    gebruikers_invoer, moderatie
-where                 --filteren op boolean leeg van goekeuring
-                        -- alleen de 5 meest recenten
-
+--alleen de top 5 recente pakken
 
 
 SELECT TOP (5)
