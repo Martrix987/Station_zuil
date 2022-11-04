@@ -15,7 +15,17 @@ conn.close()
 
 print(non_con_bericht)
 
+
+'''
 print('\n')
 for berichten in non_con_bericht:
     bericht = berichten['bericht']
 print(bericht)
+'''
+
+
+
+
+
+
+
