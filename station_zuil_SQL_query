@@ -108,7 +108,7 @@ SELECT TOP (5)
 datumtijd_bericht
 FROM bericht
 WHERE 
-ORDER BY datumtijd_bericht ASC DESC;
+ORDER BY datumtijd_bericht ASC;
 
 
 SELECT     datumtijd_bericht
