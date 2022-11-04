@@ -111,6 +111,11 @@ WHERE
 ORDER BY datumtijd_bericht ASC DESC;
 
 
+SELECT     datumtijd_bericht
+           FROM       bericht  
+           ORDER BY datumtijd_bericht ASC DESC
+           limit      1   
+
 
 
 
