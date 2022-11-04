@@ -16,6 +16,7 @@ cursor.execute(query)
 bericht = cursor.fetchmany()
 conn.close()
 
+print('\n')
 for berichten in bericht:
     con_bericht = berichten['bericht']
 print(con_bericht)
