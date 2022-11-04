@@ -17,7 +17,22 @@ print(cursor.fetchall())
 conn.close()
 
     
+connection_string = "host='localhost' dbname='station_zuil_database' user='postgres' password='128256'"
+conn = psycopg2.connect(connection_string) 
+cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
+query = """SELECT     bericht
+           FROM       bericht      g, 
+                      moderatie    m
+           where      (goedkeuring = 0 or goedkeuring is NULL) 
+           limit      1   
+           ;"""
+cursor.execute(query)
+bericht = cursor.fetchmany()
+conn.close()
 
+for berichten in bericht:
+    con_bericht = berichten['bericht']
+print(con_bericht)
 
 
 
@@ -42,3 +57,31 @@ conn.commit()
 cursor.close()
 conn.close()
 '''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+print('\n')
+connection_string = "host='localhost' dbname='station_zuil_database' user='postgres' password='128256'"
+conn = psycopg2.connect(connection_string) 
+cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
+query = """SELECT     bericht
+           FROM       bericht   g, 
+                      moderatie           m
+           where      g.bericht_id = m.bericht_id
+           and      (  goedkeuring = 0 or goedkeuring is NULL )
+           ;"""
+cursor.execute(query)
+print(cursor.fetchall())
+conn.close()
