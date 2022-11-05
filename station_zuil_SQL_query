@@ -128,3 +128,11 @@ SELECT     datumtijd_bericht
 --station 1 op veel
 
 --            ORDER BY datumtijd_bericht asc
+
+
+
+
+
+--bug fix:
+--bij de insert de gebruikers.mod_id (gelijkstellen) = moderatie.mod_id
+-- om voor elke mod een bericht te tonen verkomen
