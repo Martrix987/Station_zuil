@@ -8,6 +8,13 @@ base_url = "https://openweathermap.org/data/2.5/weather?"
 api_key = open('api_key', 'r').read()
 stad = "Amsterdam"
 
+url = base_url + "appid=" + api_key + "&q=" + stad
+
+antwoord = requests.get(url).json
+print(respo)
+
+
+
 
 connection_string = "host='localhost' dbname='station_zuil_database' user='postgres' password='128256'"
 conn = psycopg2.connect(connection_string) 
