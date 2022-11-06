@@ -1,7 +1,7 @@
 import psycopg2.extras
 import psycopg2
 import requests
-import datetime as dt
+#import datetime
 
 
 base_url = "https://openweathermap.org/data/2.5/weather?" 
@@ -10,7 +10,7 @@ stad = "Amsterdam"
 
 url = base_url + "appid=" + api_key + "&q=" + stad
 
-antwoord = requests.get(url).json
+antwoord = requests.get(url).json()
 print(antwoord)
 
 
