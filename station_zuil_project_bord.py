@@ -11,7 +11,7 @@ stad = "Amsterdam"
 url = base_url + "appid=" + api_key + "&q=" + stad
 
 antwoord = requests.get(url).json
-print(respo)
+print(antwoord)
 
 
 
