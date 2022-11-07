@@ -50,7 +50,7 @@ def click_utrecht():
     connection_string = "host='localhost' dbname='station_zuil_database' user='postgres' password='128256'"
     conn = psycopg2.connect(connection_string) 
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
-    query = """SELECT bericht
+    query = """SELECT bericht, naam
                 FROM bericht
                 ORDER BY datumtijd_bericht DESC
                 LIMIT 5;
@@ -61,7 +61,7 @@ def click_utrecht():
     print(non_con_bericht)
 
 
-    bericht1 = Label(master=root, text='hello world', foreground='blue', font=('Helvetica', 16), height=20)
+    bericht1 = Label(master=root, text=non_con_bericht, foreground='blue', font=('Helvetica', 16), height=20, bg='yellow',)
     bericht1.pack()
     stad = 'Utrecht'
     return stad
@@ -70,11 +70,13 @@ def click_utrecht():
 
 
 root = Tk()
+root.configure(bg='yellow')
 root.geometry("1080x720")
 root.resizable(False, False)
 
 
 kiezen = Label(
+bg='yellow',
 master=root,
 text='Choose you current location',
 foreground='blue',
@@ -83,16 +85,16 @@ height=20
 )
 kiezen.pack()
 
-utrecht = Button(master=root, text='Utrecht', command=click_utrecht)
+utrecht = Button(master=root, text='Utrecht', command=click_utrecht, foreground='blue', bg='yellow',)
 utrecht.pack(pady=10)
 utrecht.place(x=400, y=300)
 
-amsterdam = Button(master=root, text='Amsterdam', command=click_amsterdam)
+amsterdam = Button(master=root, text='Amsterdam', command=click_amsterdam, foreground='blue', bg='yellow',)
 amsterdam.pack(pady=10)
 amsterdam.place(x=500, y=300)
 
 
-leiden = Button(master=root, text='Leiden', command=click_leiden)
+leiden = Button(master=root, text='Leiden', command=click_leiden, foreground='blue', bg='yellow',)
 leiden.pack(pady=10)
 leiden.place(x=625, y=300)
 
