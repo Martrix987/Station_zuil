@@ -15,7 +15,7 @@ def click_amsterdam():
     stad = 'Amsterdam'
     weerbericht(stad)
     berichten()
-    #voorzieningen(stad)
+    voorzieningen(stad)
  
 
 def click_leiden():
@@ -25,9 +25,9 @@ def click_leiden():
     kiezen.destroy()
 
     stad = 'Leiden'
+    voorzieningen(stad)
     weerbericht(stad)
     berichten()
-    #voorzieningen(stad)
 
 
 def click_utrecht():
@@ -38,8 +38,9 @@ def click_utrecht():
 
     stad = 'Utrecht'
     weerbericht(stad)
+    voorzieningen(stad)
     berichten()
-    #voorzieningen(stad)
+
 
 
 
@@ -53,10 +54,17 @@ kiezen.pack()
 kiezen.place(x=450, y=260)
 
 img = PhotoImage(file='ns_logo.png')
-ns_logo = Label(root, image=img)
+ns_logo = Label(root, image=img, bg='yellow')
 ns_logo.pack()
 ns_logo.place(x=0, y=0)
 
+
+'''
+img = PhotoImage(file='img_lift.png')
+ov_fiets_logo = Label(root, image=img)
+ov_fiets_logo.pack()
+ov_fiets_logo.place(x=450, y=260)
+'''
 
 
 
@@ -125,7 +133,6 @@ def weerbericht(stad):
     gevoels_temp = int(gevoels_temp - 273.15) 
 
     luchtvochtigheid = weerbericht['main']['humidity']
-    print(temp, gevoels_temp, luchtvochtigheid)
 
     Weersvoorspellinge = Label(master=root, text='Weersvoorspellinge:', foreground='blue', font=('Arial', 20), bg='yellow', )
     Weersvoorspellinge.pack()
@@ -158,34 +165,38 @@ def voorzieningen(stad):
         lift = berichten[berichten[1]]
         wc = berichten[berichten[2]]
         laaden_lossen = berichten[berichten[3]]
+    
+    print(lift, wc)
 
-    voorzieningen_txt = Label(master=root, text='De pictogrammen hieronder staan voor de aanwezig faciliteiten op dit station: ', foreground='blue', font=('Arial', 20), bg='yellow', )
+    voorzieningen_txt = Label(master=root, text='De pictogrammen hieronder \nstaan voor de aanwezig faciliteiten op dit station: ', foreground='blue', font=('Arial', 20), bg='yellow', )
     voorzieningen_txt.pack()
     voorzieningen_txt.place(x=450, y=260)
-    
+
+
     if ov_fiets == True:
         img = PhotoImage(file='img_ovfiets.png')
-        ov_fiets_logo = Label(root, image=img)
+        ov_fiets_logo = Label(root, image=img, bg='yellow')
         ov_fiets_logo.pack()
-        ov_fiets_logo.place(x=0, y=0)
+        ov_fiets_logo.place(x=500, y=600)
     
     if lift == True:
         img = PhotoImage(file='img_lift.png')
-        lift_logo = Label(root, image=img)
+        lift_logo = Label(root, image=img, bg='yellow')
         lift_logo.pack()
-        lift_logo.place(x=0, y=0)
+        lift_logo.place(x=600, y=500)
 
     if wc == True:
         img = PhotoImage(file='img_toilet.png')
-        wc_logo = Label(root, image=img)
+        wc_logo = Label(root, image=img, bg='yellow')
         wc_logo.pack()
-        wc_logo.place(x=0, y=0)
+        wc_logo.place(x=600, y=600)
 
     if laaden_lossen == True:
         img = PhotoImage(file='img_pr.png')
-        laaden_lossen_logo = Label(root, image=img)
+        laaden_lossen_logo = Label(root, image=img, bg='yellow')
         laaden_lossen_logo.pack()
-        laaden_lossen_logo.place(x=0, y=0)    
+        laaden_lossen_logo.place(x=500, y=500) 
+    return lift, wc,    
 
 
 
