@@ -1,7 +1,9 @@
 import psycopg2.extras
 import psycopg2
 import requests
+import tkinter
 from tkinter import *
+from PIL import ImageTk, Image
 
 api_key = "982bf4c7313a277317a3098d5fd749df"
 
@@ -25,9 +27,9 @@ def click_leiden():
     kiezen.destroy()
 
     stad = 'Leiden'
-    voorzieningen(stad)
     weerbericht(stad)
     berichten()
+    voorzieningen(stad)
 
 
 def click_utrecht():
@@ -59,12 +61,20 @@ ns_logo.pack()
 ns_logo.place(x=0, y=0)
 
 
-'''
-img = PhotoImage(file='img_lift.png')
-ov_fiets_logo = Label(root, image=img)
-ov_fiets_logo.pack()
-ov_fiets_logo.place(x=450, y=260)
-'''
+img_ov_fiets = PhotoImage(file='img_ovfiets.png')
+ov_fiets_logo = Label(master = root, image=img_ov_fiets, bg='yellow')
+
+img_lift = PhotoImage(file='img_lift.png')
+ov_fiets_logo = Label(master = root, image=img_lift, bg='yellow')
+
+img_toilet = PhotoImage(file='img_toilet.png')
+ov_fiets_logo = Label(master = root, image=img_toilet, bg='yellow')
+
+#alleen deze werkt
+img_pr = PhotoImage(file='img_lift.png')
+ov_fiets_logo = Label(master = root, image=img_pr, bg='yellow')
+
+
 
 
 
@@ -171,33 +181,35 @@ def voorzieningen(stad):
     voorzieningen_txt = Label(master=root, text='De pictogrammen hieronder \nstaan voor de aanwezig faciliteiten op dit station: ', foreground='blue', font=('Arial', 20), bg='yellow', )
     voorzieningen_txt.pack()
     voorzieningen_txt.place(x=450, y=260)
-
+    
+    ov_fiets =True
+    wc = True
+    lift = True
+    laaden_lossen = True
 
     if ov_fiets == True:
-        img = PhotoImage(file='img_ovfiets.png')
-        ov_fiets_logo = Label(root, image=img, bg='yellow')
+        ov_fiets = Label(image = img_ov_fiets)
         ov_fiets_logo.pack()
-        ov_fiets_logo.place(x=500, y=600)
+        ov_fiets_logo.place(x=500, y=590)
+
     
     if lift == True:
-        img = PhotoImage(file='img_lift.png')
-        lift_logo = Label(root, image=img, bg='yellow')
-        lift_logo.pack()
-        lift_logo.place(x=600, y=500)
+        lift = Label(image = img_lift)
+        ov_fiets_logo.pack()
+        ov_fiets_logo.place(x=550, y=590)
 
     if wc == True:
-        img = PhotoImage(file='img_toilet.png')
-        wc_logo = Label(root, image=img, bg='yellow')
-        wc_logo.pack()
-        wc_logo.place(x=600, y=600)
+        wc = Label(image = img_toilet)
+        ov_fiets_logo.pack()
+        ov_fiets_logo.place(x=600, y=590)
 
     if laaden_lossen == True:
-        img = PhotoImage(file='img_pr.png')
-        laaden_lossen_logo = Label(root, image=img, bg='yellow')
-        laaden_lossen_logo.pack()
-        laaden_lossen_logo.place(x=500, y=500) 
+        laaden_lossen = Label(image = img_pr)
+        ov_fiets_logo.pack()
+        ov_fiets_logo.place(x=650, y=590)
+    
+    print(ov_fiets, lift, wc, laaden_lossen) 
     return lift, wc,    
-
 
 
 
