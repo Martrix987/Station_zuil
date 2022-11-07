@@ -76,14 +76,16 @@ root.resizable(False, False)
 
 
 kiezen = Label(
-bg='yellow',
-master=root,
-text='Choose you current location',
-foreground='blue',
-font=('Helvetica', 16),
-height=20
-)
+bg='yellow', master=root, text='Choose you current location', foreground='blue', font=('Helvetica', 16), height=20)
 kiezen.pack()
+
+ns_logo = PhotoImage(Image("forest.jpg"))
+
+# Create a Label Widget to display the text or Image
+label = Label(image = ns_logo)
+label.pack()
+
+
 
 utrecht = Button(master=root, text='Utrecht', command=click_utrecht, foreground='blue', bg='yellow',)
 utrecht.pack(pady=10)
