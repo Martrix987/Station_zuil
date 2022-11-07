@@ -1,14 +1,15 @@
 import psycopg2.extras
 import psycopg2
 import requests
+from tkinter import *
 #import datetime
 
 
-base_url = "https://openweathermap.org/data/2.5/weather?" 
-api_key = open('api_key', 'r').read()
+basis_url = "https://openweathermap.org/data/2.5/weather?" 
+api_sleutel = '982bf4c7313a277317a3098d5fd749df'
 stad = "Amsterdam"
 
-url = base_url + "appid=" + api_key + "&q=" + stad
+url = basis_url + "appid=" + api_sleutel + "&q=" + stad
 
 antwoord = requests.get(url).json()
 print(antwoord)
@@ -38,6 +39,20 @@ print(bericht)
 '''
 
 
+
+root = Tk()
+
+achtergrond = PhotoImage(file='station_zuil_GUI_achtergrond.png')
+label = Label(master=root, 
+              text='Hello World', 
+              background='yellow')
+
+
+
+label.pack()
+
+
+root.mainloop()
 
 
 
