@@ -6,11 +6,6 @@ from tkinter import *
 api_key = "982bf4c7313a277317a3098d5fd749df"
 
 
-
-
-
-from tkinter import *
-
 def click_amsterdam():
     amsterdam.destroy()
     utrecht.destroy()
