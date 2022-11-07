@@ -1,9 +1,9 @@
 import psycopg2.extras
 import psycopg2
-#import requests
+import requests
 from tkinter import *
 #import datetime
-
+api_key = "982bf4c7313a277317a3098d5fd749df"
 
 
 
@@ -34,7 +34,22 @@ def click_amsterdam():
     berichten.pack()
     
     stad = 'Amsterdam'
-    return stad
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={stad}&appid={api_key}"
+
+    weerbericht = requests.get(url).json()
+
+    temp = weerbericht['main']['temp']
+    temp = int(temp - 273.15) 
+    #Omrekenen to graden Celcuis en int maken zodat je geen decimale krijgt
+
+    gevoels_temp = weerbericht['main']['feels_like']
+    #Omrekenen to graden Celcuis en int maken zodat je geen decimale krijgt
+    gevoels_temp = int(gevoels_temp - 273.15) 
+    
+
+    luchtvochtigheid = weerbericht['main']['humidity']
+    print(temp, gevoels_temp, luchtvochtigheid)
+
 
 
 
