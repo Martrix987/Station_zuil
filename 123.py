@@ -3,12 +3,15 @@ from tkinter import *
 
 
 root = Tk()
+root.title("NS_stationbord")
+
 
 achtergrond = PhotoImage(file='station_zuil_achtergrond.png')
 label = Label(
 master=root, 
-text='Hello World',
-image = achtergrond
+image = achtergrond,
+text='Hello World'
+
 
 
 )
