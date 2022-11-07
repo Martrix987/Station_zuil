@@ -18,7 +18,7 @@ conn.close()
 
 print('\n')
 for berichten in bericht:
-    con_bericht = berichten['bericht']
+    con_bericht = berichten[berichten[0]]
 print(con_bericht)
 
 
