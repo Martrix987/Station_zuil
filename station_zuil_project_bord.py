@@ -17,6 +17,9 @@ def click_amsterdam():
     leiden.destroy()
     kiezen.destroy()
 
+    stad = 'Amsterdam'
+    weerbericht(stad)
+
     connection_string = "host='localhost' dbname='station_zuil_database' user='postgres' password='128256'"
     conn = psycopg2.connect(connection_string) 
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
@@ -30,25 +33,17 @@ def click_amsterdam():
     conn.close()
     print(non_con_bericht)
 
-    berichten = Label(master=root, text='con_bericht', foreground='blue', font=('Helvetica', 16), height=20, bg='yellow',)
+    berichten = Label(master=root, text='con_bericht', foreground='blue', font=('Helvetica', 16), bg='yellow',)
     berichten.pack()
     
-    stad = 'Amsterdam'
-    url = f"http://api.openweathermap.org/data/2.5/weather?q={stad}&appid={api_key}"
-
-    weerbericht = requests.get(url).json()
-
-    temp = weerbericht['main']['temp']
-    temp = int(temp - 273.15) 
-    #Omrekenen to graden Celcuis en int maken zodat je geen decimale krijgt
-
-    gevoels_temp = weerbericht['main']['feels_like']
-    #Omrekenen to graden Celcuis en int maken zodat je geen decimale krijgt
-    gevoels_temp = int(gevoels_temp - 273.15) 
+    
+    
     
 
-    luchtvochtigheid = weerbericht['main']['humidity']
-    print(temp, gevoels_temp, luchtvochtigheid)
+
+    
+
+
 
 
 
@@ -59,6 +54,9 @@ def click_leiden():
     leiden.destroy()
     kiezen.destroy()
 
+    stad = 'Leiden'
+    weerbericht(stad)
+
     connection_string = "host='localhost' dbname='station_zuil_database' user='postgres' password='128256'"
     conn = psycopg2.connect(connection_string) 
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
@@ -72,7 +70,7 @@ def click_leiden():
     conn.close()
     print(non_con_bericht)
 
-    berichten = Label(master=root, text='con_bericht', foreground='blue', font=('Helvetica', 16), height=20, bg='yellow',)
+    berichten = Label(master=root, text='con_bericht', foreground='blue', font=('Helvetica', 16), bg='yellow',)
     berichten.pack()
 
     stad = 'Leiden'
@@ -84,6 +82,9 @@ def click_utrecht():
     utrecht.destroy()
     leiden.destroy()
     kiezen.destroy()
+
+    stad = 'Utrecht'
+    weerbericht(stad)
     
 
     connection_string = "host='localhost' dbname='station_zuil_database' user='postgres' password='128256'"
@@ -99,7 +100,7 @@ def click_utrecht():
     conn.close()
     print(non_con_bericht)
 
-    berichten = Label(master=root, text='con_bericht', foreground='blue', font=('Helvetica', 16), height=20, bg='yellow',)
+    berichten = Label(master=root, text='con_bericht', foreground='blue', font=('Helvetica', 16), bg='yellow',)
     berichten.pack()
 
     stad = 'Utrecht'
@@ -115,8 +116,9 @@ root.resizable(False, False)
 
 
 kiezen = Label(
-bg='yellow', master=root, text='Choose you current location', foreground='blue', font=('Helvetica', 16), height=20)
+bg='yellow', master=root, text='Choose you current location', foreground='blue', font=('Helvetica', 16),)
 kiezen.pack()
+kiezen.place(x=450, y=260)
 
 ns_logo = PhotoImage("ns_logo.png")
 logo = Label(image=ns_logo)
@@ -124,18 +126,63 @@ logo.pack()
 
 
 
+
 utrecht = Button(master=root, text='Utrecht', command=click_utrecht, foreground='blue', bg='yellow',)
 utrecht.pack(pady=10)
-utrecht.place(x=400, y=300)
+utrecht.place(x=440, y=360)
 
 amsterdam = Button(master=root, text='Amsterdam', command=click_amsterdam, foreground='blue', bg='yellow',)
 amsterdam.pack(pady=10)
-amsterdam.place(x=500, y=300)
+amsterdam.place(x=545, y=360)
 
 
 leiden = Button(master=root, text='Leiden', command=click_leiden, foreground='blue', bg='yellow',)
 leiden.pack(pady=10)
-leiden.place(x=625, y=300)
+leiden.place(x=666, y=360)
+
+def weerbericht(stad):
+    tempratuur_txt = Label(master=root, text='Tempratuur in graden celcius:', foreground='blue', font=('Arial', 20), bg='yellow', )
+    tempratuur_txt.pack()
+    tempratuur_txt.place(x=625, y=50)  
+
+    gevoel_txt = Label(master=root, text='Gevoels temp in graden celcius:', foreground='blue', font=('Arial', 20), bg='yellow', )
+    gevoel_txt.pack()
+    gevoel_txt.place(x=600, y=100)  
+
+    vochtigheid_txt = Label(master=root, text='Luchtvochtigheid in procenten: ', foreground='blue', font=('Arial', 20), bg='yellow', )
+    vochtigheid_txt.pack()
+    vochtigheid_txt.place(x=616, y=150) 
+    
+
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={stad}&appid={api_key}"
+
+    weerbericht = requests.get(url).json()
+
+    temp = weerbericht['main']['temp']
+    temp = int(temp - 273.15) 
+    #Omrekenen to graden celcius en int maken zodat je geen decimale krijgt
+
+    gevoels_temp = weerbericht['main']['feels_like']
+    #Omrekenen to graden celcius en int maken zodat je geen decimale krijgt
+    gevoels_temp = int(gevoels_temp - 273.15) 
+
+    luchtvochtigheid = weerbericht['main']['humidity']
+    print(temp, gevoels_temp, luchtvochtigheid)
+
+    Weersvoorspellinge = Label(master=root, text='Weersvoorspellinge:', foreground='blue', font=('Arial', 20), bg='yellow', )
+    Weersvoorspellinge.pack()
+    Weersvoorspellinge.place(x=735, y=0)    
+    temp_amst = Label(master=root, text=temp, foreground='blue', font=('Arial', 20), bg='yellow', )
+    temp_amst.pack()
+    temp_amst.place(x=1000, y=50)
+    gevoel_amst = Label(master=root, text=gevoels_temp, foreground='blue', font=('Arial', 20), bg='yellow',)
+    gevoel_amst.pack()
+    gevoel_amst.place(x=1000, y=100)
+    vochtig_amst = Label(master=root, text=luchtvochtigheid, foreground='blue', font=('Arial', 20), bg='yellow',)
+    vochtig_amst.pack()
+    vochtig_amst.place(x=1000, y=150)  
+
+
 
 
 root.mainloop()
