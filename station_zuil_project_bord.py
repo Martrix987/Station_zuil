@@ -7,17 +7,7 @@ from tkinter import *
 
 
 
-'''
-basis_url = "https://openweathermap.org/data/2.5/weather?" 
-api_sleutel = '982bf4c7313a277317a3098d5fd749df'
-stad = "Amsterdam"
 
-url = basis_url + "appid=" + api_sleutel + "&q=" + stad
-
-antwoord = requests.get(url).json()
-print(antwoord)
-
-'''
 
 from tkinter import *
 

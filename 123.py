@@ -1,5 +1,28 @@
-from tkinter import *
+#from tkinter import *
+import requests
 
+
+
+basis_url = "https://openweathermap.org/data/2.5/weather?" 
+api_sleutel = '982bf4c7313a277317a3098d5fd749df'
+stad = "Amsterdam"
+
+url = basis_url + "appid=" + api_sleutel + "&q=" + stad
+
+antwoord = requests.get(url).json()
+print(antwoord)
+
+
+
+
+
+
+
+
+
+
+
+'''
 def click_amsterdam():
     amsterdam.destroy()
     utrecht.destroy()
@@ -99,7 +122,7 @@ root.mainloop()
 
 
 
-'''import tkinter as tk
+import tkinter as tk
 #from functools import partial
 
 def onreturn(*args):
