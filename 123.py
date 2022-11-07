@@ -4,6 +4,7 @@ from functools import partial
 
 root = Tk()
 
+
 achtergrond = PhotoImage(file='station_zuil_achtergrond.png')
 label = Label(
 image = achtergrond,
