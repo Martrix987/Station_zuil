@@ -48,22 +48,24 @@ def click_utrecht():
 
 
 
-
+#de basis voor de GUI word aangeroepen (formaat, achtergrond, formaataanpasbaar False)
 root = Tk()
 root.configure(bg='yellow')
 root.geometry("1080x720")
 root.resizable(False, False)
 
+#label met de tekst keizen voor de buttons
 kiezen = Label(master=root, bg='yellow', text='Choose you current location', foreground='blue', font=('Helvetica', 16),)
 kiezen.pack()
 kiezen.place(x=450, y=260)
 
+#ns logo plaatje
 img = PhotoImage(file='ns_logo.png')
 ns_logo = Label(root, image=img, bg='yellow')
 ns_logo.pack()
 ns_logo.place(x=0, y=0)
 
-
+#Hier worden de foto's voor de facaliteiten alvast aangeroepen
 img_ov_fiets = PhotoImage(file='img_ovfiets.png')
 ov_fiets_logo = Label(master = root, image=img_ov_fiets, bg='yellow')
 
@@ -77,6 +79,7 @@ img_pr = PhotoImage(file='img_pr.png')
 laaden_lossen_logo = Label(master = root, image=img_pr, bg='yellow')
 
 
+#button om te kiezen of je in: Amsterdam, Utrecht of Leiden station bent
 utrecht = Button(master=root, text='Utrecht', command=click_utrecht, foreground='blue', bg='yellow',)
 utrecht.pack(pady=10)
 utrecht.place(x=440, y=360)
@@ -85,15 +88,14 @@ amsterdam = Button(master=root, text='Amsterdam', command=click_amsterdam, foreg
 amsterdam.pack(pady=10)
 amsterdam.place(x=545, y=360)
 
-
 leiden = Button(master=root, text='Leiden', command=click_leiden, foreground='blue', bg='yellow',)
 leiden.pack(pady=10)
 leiden.place(x=666, y=360)
 
 
-
-
+#functie om de berichten te zien
 def berichten():
+    #opvragen uit de DB van de 5 meest recenten berichten 
     connection_string = "host='localhost' dbname='station_zuil_database' user='postgres' password='128256'"
     conn = psycopg2.connect(connection_string) 
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
@@ -106,6 +108,7 @@ def berichten():
     non_con_bericht = cursor.fetchall()
     conn.close()
 
+#elk bericht en naam wordt uit de library gehaald en in de variable naam[getal].txt gezet
     naam1 = non_con_bericht[0]['naam']
     naam2 = non_con_bericht[1]['naam']
     naam3 = non_con_bericht[2]['naam']
@@ -118,9 +121,9 @@ def berichten():
     bericht4 = non_con_bericht[3]['bericht']
     bericht5 = non_con_bericht[4]['bericht']
 
+#en de layaout van de labels waarin de berichten worden weergegeven (omstebeurd: naam bericht)
     naam_berichten_txt = Label(master=root, text='Naam en berichten van onze gebruiker: ', foreground='black', font=('Arial', 12), bg='white',)
     naam_berichten_txt.place(x=0, y=175)
-
 
     naam1_txt = Label(master=root, text=naam1, foreground='black', font=('Arial', 8), bg='white',)
     naam1_txt.place(x=0, y=200)
@@ -154,7 +157,7 @@ def berichten():
 
 
 
-
+#de functie voor het weerbericht bestaat uit een label voor tempratuur, gevoels tempratuur en luchtvochtigheid
 def weerbericht(stad):
     tempratuur_txt = Label(master=root, text='Tempratuur in graden celcius:', foreground='blue', font=('Arial', 20), bg='yellow', )
     tempratuur_txt.pack()
@@ -168,36 +171,33 @@ def weerbericht(stad):
     vochtigheid_txt.pack()
     vochtigheid_txt.place(x=616, y=150) 
     
-
+#hier word de API weerbericht geopend en uitgelezen met de API key en de stad van de geklikte button
     url = f"http://api.openweathermap.org/data/2.5/weather?q={stad}&appid={api_key}"
-
     weerbericht = requests.get(url).json()
 
+#Hier wordt de info gehaald uit de library van het weerbericht en naar grade celuis omgerekend en in een integer gezet (zodat geen deciamle)
     temp = weerbericht['main']['temp']
     temp = int(temp - 273.15) 
-    #Omrekenen to graden celcius en int maken zodat je geen decimale krijgt
 
+#Hier wordt de info gehaald uit de library van het weerbericht en naar grade celuis omgerekend en in een integer gezet (zodat geen deciamle)
     gevoels_temp = weerbericht['main']['feels_like']
-    #Omrekenen to graden celcius en int maken zodat je geen decimale krijgt
     gevoels_temp = int(gevoels_temp - 273.15) 
 
+#Hier wordt de info gehaald uit de library van het weerbericht
     luchtvochtigheid = weerbericht['main']['humidity']
 
+#het weerbericht wordt in de GUI gezet met labels
     Weersvoorspellinge = Label(master=root, text='Weersvoorspellinge:', foreground='blue', font=('Arial', 20), bg='yellow', )
-    Weersvoorspellinge.pack()
     Weersvoorspellinge.place(x=735, y=0)    
     temp = Label(master=root, text=temp, foreground='blue', font=('Arial', 20), bg='yellow', )
-    temp.pack()
     temp.place(x=1000, y=50)
     gevoel = Label(master=root, text=gevoels_temp, foreground='blue', font=('Arial', 20), bg='yellow',)
-    gevoel.pack()
     gevoel.place(x=1000, y=100)
     vochtig = Label(master=root, text=luchtvochtigheid, foreground='blue', font=('Arial', 20), bg='yellow',)
-    vochtig.pack()
     vochtig.place(x=1000, y=150)  
 
 
-
+#in deze functie wordt gekeken welke stad de persoon heeft aangeclikt en dan wordt uit de DB de facaliteiten van dat station uitgelezen
 def voorzieningen(stad):
     connection_string = "host='localhost' dbname='station_zuil_database' user='postgres' password='128256'"
     conn = psycopg2.connect(connection_string) 
@@ -213,37 +213,29 @@ def voorzieningen(stad):
     wc = voorzieningen[0]['wc']
     laaden_lossen = voorzieningen[0]['laaden_lossen']
 
+#De layout voor de voorzieningen wordt hier gedeeltelijk vastgelegd
     voorzieningen_txt = Label(master=root, text='De pictogrammen hieronder \nstaan voor de aanwezig faciliteiten op dit station: ', foreground='blue', font=('Arial', 20), bg='yellow', )
     voorzieningen_txt.pack()
     voorzieningen_txt.place(x=450, y=500)
 
-
+#op regel 68 totenmet ongeveer regel 80 word het eerste gedeelte van de foto aangeroepen.
+#hier wordt slechts de layout vastgesteld
     if ov_fiets == True:
         ov_fiets = Label(image = img_ov_fiets)
-        ov_fiets_logo.pack()
         ov_fiets_logo.place(x=700, y=590)
 
     if lift == True:
         lift = Label(image = img_lift)
-        lift_logo.pack()
         lift_logo.place(x=400, y=590)
 
     if wc == True:
         wc = Label(image = img_toilet)
-        wc_logo.pack()
         wc_logo.place(x=550, y=590)
 
     if laaden_lossen == True:
         laaden_lossen = Label(image = img_pr)
-        laaden_lossen_logo.pack()
         laaden_lossen_logo.place(x=875, y=590)
  
-
-
-
-
-
-
 root.mainloop()
 
 
