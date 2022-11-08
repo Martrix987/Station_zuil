@@ -26,12 +26,13 @@ for berichten in bericht:
     con_bericht = berichten[berichten[0]]
 print(con_bericht)
 
-
-#moet moet hier bepalen of het bericht netjes is en hij moet zijn ID invullen (zodat wij weten welke mod het heeft beoordeeld)
-# 0 wordt als niet gekeurd gezien (default waarde uit DB = 0)
-# 1 = goegekeurd
-# 2 = afgekeurd
-# indien notatie incorrect (goedkeuring wordt 0 en word dus weer opneiw gevraagd) 
+'''
+moet moet hier bepalen of het bericht netjes is en hij moet zijn ID invullen (zodat wij weten welke mod het heeft beoordeeld)
+ 0 wordt als niet gekeurd gezien (default waarde uit DB = 0)
+ 1 = goegekeurd
+ 2 = afgekeurd
+indien notatie incorrect (goedkeuring wordt 0 en word dus weer opneiw gevraagd) 
+'''
 test_keuring = int(input('\nControleer of de tekst hierboven fatsoenlijk is, indien de tekst fatsoenlijk is type 1 maar als de tekst niet fatsoenlijk is typ 2 \n: '))
 mod_id = int(input('Voer hier uw modderator nummer (ID) in: '))
 datum_tijd = datetime.datetime.now()
@@ -47,10 +48,9 @@ else:
 
 #informatie voor de gebruiker
 print('\nDe volgende informatie is succesvol opgeslagen: ')
-print('Naam: ', mod_id)
-print('Bericht: ', keuring)
-print('De datum en de tijd: ',con_bericht)
-print('Uw huidige locatie: ',datum_tijd, '\n')
+print('Moderator ID: ', mod_id)
+print('Keuring: ', keuring)
+print('De datum en de tijd: ',datum_tijd, '\n')
 
 #wordt connectie gemaakt met de DB
 connection_string = "host='localhost' dbname='station_zuil_database' user='postgres' password='128256'"
