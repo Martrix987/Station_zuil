@@ -1,9 +1,3 @@
 # Station_zuil
-
-
-
-
-Variable:
-stations = de 3 stations die ik zelf heb gekozen(Amsterdam Utrecht en Leide)
-random_station = 1 van de 3 stations hierboven genoemd
-
+Dit is een project waar iemand een bericht mag achterlaten, vervolgens goedgekeurd moet worden, en dan in een GUI word laten zien samen met wat ander data.
+Voor dit project heb je een database nodig.
