@@ -17,15 +17,14 @@ query = """SELECT     bericht
 
 #connectie wordt gesloten en het bericht wordt opgeslagen in de variable 'bericht'
 cursor.execute(query)
-bericht = cursor.fetchmany()
+berichten = cursor.fetchmany()
 conn.close()
 
 #bericht wordt een string en aan de mod laten zien
 print('\n')
-for berichten in bericht:
-    con_bericht = berichten[berichten[0]]
+for bericht in berichten:
+    con_bericht = (bericht[0])
 print(con_bericht)
-
 '''
 moet moet hier bepalen of het bericht netjes is en hij moet zijn ID invullen (zodat wij weten welke mod het heeft beoordeeld)
  0 wordt als niet gekeurd gezien (default waarde uit DB = 0)
