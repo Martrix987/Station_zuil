@@ -57,14 +57,12 @@ root.geometry("1080x720")
 root.resizable(False, False)
 
 #label met de tekst keizen voor de buttons
-kiezen = Label(master=root, bg='yellow', text='Choose you current location', foreground='blue', font=('Helvetica', 16),)
-kiezen.pack()
-kiezen.place(x=450, y=260)
+kiezen = Label(master=root, bg='yellow', text='Kies uw huidige locatie:', foreground='blue', font=('Helvetica', 16),)
+kiezen.place(x=450, y=275)
 
 #ns logo plaatje
 img = PhotoImage(file='ns_logo.png')
 ns_logo = Label(root, image=img, bg='yellow')
-ns_logo.pack()
 ns_logo.place(x=0, y=0)
 
 #Hier worden de foto's voor de facaliteiten alvast aangeroepen
@@ -158,15 +156,12 @@ def berichten():
 #de functie voor het weerbericht bestaat uit een label voor tempratuur, gevoels tempratuur en luchtvochtigheid
 def weerbericht(stad):
     tempratuur_txt = Label(master=root, text='Tempratuur in graden celcius:', foreground='blue', font=('Arial', 20), bg='yellow', )
-    tempratuur_txt.pack()
     tempratuur_txt.place(x=625, y=50)  
 
     gevoel_txt = Label(master=root, text='Gevoels temp in graden celcius:', foreground='blue', font=('Arial', 20), bg='yellow', )
-    gevoel_txt.pack()
     gevoel_txt.place(x=600, y=100)  
 
     vochtigheid_txt = Label(master=root, text='Luchtvochtigheid in procenten: ', foreground='blue', font=('Arial', 20), bg='yellow', )
-    vochtigheid_txt.pack()
     vochtigheid_txt.place(x=616, y=150) 
     
 #hier word de API weerbericht geopend en uitgelezen met de API key en de stad van de geklikte button
@@ -213,7 +208,6 @@ def voorzieningen(stad):
 
 #De layout voor de voorzieningen wordt hier gedeeltelijk vastgelegd
     voorzieningen_txt = Label(master=root, text='De pictogrammen hieronder \nstaan voor de aanwezig faciliteiten op dit station: ', foreground='blue', font=('Arial', 20), bg='yellow', )
-    voorzieningen_txt.pack()
     voorzieningen_txt.place(x=450, y=500)
 
 #op regel 68 totenmet ongeveer regel 80 word het eerste gedeelte van de foto aangeroepen.
