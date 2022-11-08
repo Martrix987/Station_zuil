@@ -103,18 +103,12 @@ VALUES
 --Om te testen
 -------------------------------------------------------------------------------------------------------------------------------------
 
+--alles:
+--SELECT *
+--FROM moderatie, bericht, station_service
+
+--meest recente 5 berichten:
 --SELECT naam, bericht
 --FROM bericht
 --ORDER BY datumtijd_bericht DESC
 --LIMIT 5;
-
-
--- 1 op 1
---nieuwe tabel met naam email en id van mod
---datumtijd beoordeling enzo maak je nullable zodat die later ingevoerd kan worden
---station 1 op veel
-
-
---bug fix:
---bij de insert de gebruikers.mod_id (gelijkstellen) = moderatie.mod_id
--- om voor elke mod een bericht te tonen verkomen
