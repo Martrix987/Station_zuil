@@ -4,8 +4,13 @@ import requests
 import tkinter
 from tkinter import *
 api_key = "982bf4c7313a277317a3098d5fd749df"
+#benodigheden worden geinporteerd en api_key is nodig voor het weer
 
 
+#indien knop amsterdam wordt gedrukt worden alle knoppen en tekst verwijderd behalve het NS logo
+#en worden de beibehorden functies aangeroepen
+#weerbericht en voorzieningen hebben de locatie nodig
+#dit gebeurd voor alle 3 de functies
 def click_amsterdam():
     amsterdam.destroy()
     utrecht.destroy()
