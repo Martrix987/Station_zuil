@@ -106,9 +106,17 @@ def berichten():
     non_con_bericht = cursor.fetchall()
     conn.close()
     print(non_con_bericht)
+    #for bericht in non_con_bericht:
+        #counter = 0
+        #counter += 50
+        #bericht = bericht['bericht']
+        #naam = naam['naam']
+        #bericht_txt = Label(master=root, text=naam, foreground='blue', font=('Helvetica', 16), bg='yellow',)
+        #bericht_txt.pack()
+        
 
-    berichten = Label(master=root, text='con_bericht', foreground='blue', font=('Helvetica', 16), bg='yellow',)
-    berichten.pack()
+    #berichten = Label(master=root, text='con_bericht', foreground='blue', font=('Helvetica', 16), bg='yellow',)
+    #berichten.pack()
 
 
 
@@ -168,16 +176,10 @@ def voorzieningen(stad):
     voorzieningen = cursor.fetchall()
     conn.close()
     print(voorzieningen)
-    #gaat hier iets fout want in voorzieningen staat true fals true false maar na de for loop word fals true fals true
-    for berichten in voorzieningen:
-        ov_fiets = berichten[berichten[0]]
-        lift = berichten[berichten[1]]
-        wc = berichten[berichten[2]]
-        laaden_lossen = berichten[berichten[3]]
-    print(ov_fiets)
-    print(lift)
-    print(wc)
-    print(laaden_lossen)
+    ov_fiets = voorzieningen[0]['ov_fiets']
+    lift = voorzieningen[0]['lift']
+    wc = voorzieningen[0]['wc']
+    laaden_lossen = voorzieningen[0]['laaden_lossen']
 
     voorzieningen_txt = Label(master=root, text='De pictogrammen hieronder \nstaan voor de aanwezig faciliteiten op dit station: ', foreground='blue', font=('Arial', 20), bg='yellow', )
     voorzieningen_txt.pack()
@@ -203,8 +205,7 @@ def voorzieningen(stad):
         laaden_lossen = Label(image = img_pr)
         laaden_lossen_logo.pack()
         laaden_lossen_logo.place(x=875, y=590)
-    
-    print(ov_fiets, lift, wc, laaden_lossen) 
+ 
 
 
 
