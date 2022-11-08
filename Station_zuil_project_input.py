@@ -46,24 +46,15 @@ print('De datum en de tijd: ',datum)
 print('Uw huidige locatie: ',random_station, '\n')
 
 
-#hier mpoet nog geschreven worden
-# Hier wordt de connectie gemaakt met de database met de bijbehorden identiale
+#Hier wordt de connectie gemaakt met de database met de bijbehorden identiale
 connection_string = "host='localhost' dbname='station_zuil_database' user='postgres' password='128256'"
 conn = psycopg2.connect(connection_string) 
 cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
-#cursor.execute("INSERT INTO moderatie (goekeuring) VALUE (%s)", (keuring))
+#Hier wordt de datum, naam, bericht en een random station (keuzen uit: Leiden, Utrecht en Amsterdam) in de database toegevoegd
 cursor.execute("INSERT INTO bericht (datumtijd_bericht, naam, bericht, station) VALUES (%s, %s, %s, %s)", (datum, naam, bericht, random_station))
 
+#Database wordt commit en connectie wordt gesloten
 conn.commit()
 cursor.close()
 conn.close()
-
-    
-
-
-
-
-
-
-            
