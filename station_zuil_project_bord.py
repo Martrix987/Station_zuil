@@ -65,14 +65,13 @@ img_ov_fiets = PhotoImage(file='img_ovfiets.png')
 ov_fiets_logo = Label(master = root, image=img_ov_fiets, bg='yellow')
 
 img_lift = PhotoImage(file='img_lift.png')
-ov_fiets_logo = Label(master = root, image=img_lift, bg='yellow')
+lift_logo = Label(master = root, image=img_lift, bg='yellow')
 
 img_toilet = PhotoImage(file='img_toilet.png')
-ov_fiets_logo = Label(master = root, image=img_toilet, bg='yellow')
+wc_logo = Label(master = root, image=img_toilet, bg='yellow')
 
-#alleen deze werkt
-img_pr = PhotoImage(file='img_lift.png')
-ov_fiets_logo = Label(master = root, image=img_pr, bg='yellow')
+img_pr = PhotoImage(file='img_pr.png')
+laaden_lossen_logo = Label(master = root, image=img_pr, bg='yellow')
 
 
 
@@ -164,52 +163,48 @@ def voorzieningen(stad):
     conn = psycopg2.connect(connection_string) 
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
-
     cursor.execute("SELECT   ov_fiets, lift, wc, laaden_lossen   FROM station_service   WHERE station_stad = %s", (stad,))
-
 
     voorzieningen = cursor.fetchall()
     conn.close()
+    print(voorzieningen)
+    #gaat hier iets fout want in voorzieningen staat true fals true false maar na de for loop word fals true fals true
     for berichten in voorzieningen:
         ov_fiets = berichten[berichten[0]]
         lift = berichten[berichten[1]]
         wc = berichten[berichten[2]]
         laaden_lossen = berichten[berichten[3]]
-    
-    print(lift, wc)
+    print(ov_fiets)
+    print(lift)
+    print(wc)
+    print(laaden_lossen)
 
     voorzieningen_txt = Label(master=root, text='De pictogrammen hieronder \nstaan voor de aanwezig faciliteiten op dit station: ', foreground='blue', font=('Arial', 20), bg='yellow', )
     voorzieningen_txt.pack()
-    voorzieningen_txt.place(x=450, y=260)
-    
-    ov_fiets =True
-    wc = True
-    lift = True
-    laaden_lossen = True
+    voorzieningen_txt.place(x=450, y=500)
+
 
     if ov_fiets == True:
         ov_fiets = Label(image = img_ov_fiets)
         ov_fiets_logo.pack()
-        ov_fiets_logo.place(x=500, y=590)
+        ov_fiets_logo.place(x=700, y=590)
 
-    
     if lift == True:
         lift = Label(image = img_lift)
-        ov_fiets_logo.pack()
-        ov_fiets_logo.place(x=550, y=590)
+        lift_logo.pack()
+        lift_logo.place(x=400, y=590)
 
     if wc == True:
         wc = Label(image = img_toilet)
-        ov_fiets_logo.pack()
-        ov_fiets_logo.place(x=600, y=590)
+        wc_logo.pack()
+        wc_logo.place(x=550, y=590)
 
     if laaden_lossen == True:
         laaden_lossen = Label(image = img_pr)
-        ov_fiets_logo.pack()
-        ov_fiets_logo.place(x=650, y=590)
+        laaden_lossen_logo.pack()
+        laaden_lossen_logo.place(x=875, y=590)
     
     print(ov_fiets, lift, wc, laaden_lossen) 
-    return lift, wc,    
 
 
 
