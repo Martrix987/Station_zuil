@@ -43,6 +43,8 @@ references station_service (station_stad);
 
 --inserts
 -------------------------------------------------------------------------------------------------------------------------------------
+
+--insert moderators(niet via python interface te doen)
 insert into moderatie (naam_mod, email) values ('admin', 'marnixjahendriks@gmail.com');
 insert into moderatie (naam_mod, email) values ('Marnix', 'marnix@gmail.com');
 insert into moderatie (naam_mod, email) values ('NS_moderator', 'ns@gmail.com');
