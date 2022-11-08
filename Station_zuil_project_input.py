@@ -8,20 +8,22 @@ import random
 stations = ['Amsterdam', 'Utrecht', 'Leiden']
 random_station = random.choice(stations)
 
-
+#Een functie waarin een bepaald aantal regels worden gecontroleerd zoals de lengte van de naam en de lengte van het bericht.
+#Ook wordt er gecontroleerd of de gebruiker een naam heeft ingevoerd, indein niet gebeurd wordt de naam anoniem
 def opinie():
     naam = str(input('Voer hier uw naam in: '))
     if naam == ('') or naam == (' '):
         print('U heeft er voor gekozen om uw bericht anoniem in te dienen.')
         bericht = input('u kan hier uw bericht anoniem indienen, (de bericht mag uit maximaal 140 karakters bestaan en geen: /): ')
 
-# hier wordt een foutmelding gegeven als het bericht of de naam te lang is 
+#Hier wordt een foutmelding gegeven als het bericht te lang is en de naam wordt doorgegeven als anoniem
         if len(bericht) > 140 or len(naam) > 45:
             print('U heeft te veel karakters gebruikt voor uw naam of uw bericht, probeer het opnieuw')
         else:
             naam = 'anoniem'
             return naam, bericht
-            
+
+#Hier wordt ook weer een foumelding gegeven indien het bericht of de naam te lang is(alleen dit is voor als iemand een eigen naam invult)            
     else:
         print('Goedendag,', naam, 'U voert uw bericht in onder uw eigen naam.')
         bericht = input('U kan hier uw bericht openbaar indienen, (de bericht mag uit maximaal 140 karakters bestaan): ')
@@ -37,17 +39,19 @@ datum = datetime.datetime.now()
 
 
 #Dit wordt gestuurd naar de database
-print('\n', naam)
-print(bericht)
-print(datum)
-print(random_station, '\n')
+print('\nDe volgende informatie is succesvol opgeslagen: ')
+print('Naam: ', naam)
+print('Bericht: ', bericht)
+print('De datum en de tijd: ',datum)
+print('Uw huidige locatie: ',random_station, '\n')
 
+
+#hier mpoet nog geschreven worden
 # Hier wordt de connectie gemaakt met de database met de bijbehorden identiale
 connection_string = "host='localhost' dbname='station_zuil_database' user='postgres' password='128256'"
 conn = psycopg2.connect(connection_string) 
 cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
-#keuring = 0
 #cursor.execute("INSERT INTO moderatie (goekeuring) VALUE (%s)", (keuring))
 cursor.execute("INSERT INTO bericht (datumtijd_bericht, naam, bericht, station) VALUES (%s, %s, %s, %s)", (datum, naam, bericht, random_station))
 
