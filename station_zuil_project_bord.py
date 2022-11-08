@@ -19,8 +19,9 @@ def click_amsterdam():
 
     stad = 'Amsterdam'
     weerbericht(stad)
-    berichten()
     voorzieningen(stad)
+    berichten()
+   
  
 
 def click_leiden():
@@ -31,8 +32,9 @@ def click_leiden():
 
     stad = 'Leiden'
     weerbericht(stad)
-    berichten()
     voorzieningen(stad)
+    berichten()
+    
 
 
 def click_utrecht():
@@ -219,23 +221,33 @@ def voorzieningen(stad):
     voorzieningen_txt.place(x=450, y=500)
 
 #op regel 68 totenmet ongeveer regel 80 word het eerste gedeelte van de foto aangeroepen.
-#hier wordt slechts de layout vastgesteld
+#hier wordt slechts layout gemaakt voor de foto's
     if ov_fiets == True:
         ov_fiets = Label(image = img_ov_fiets)
+        ov_fiets_logo.pack()
         ov_fiets_logo.place(x=700, y=590)
 
     if lift == True:
         lift = Label(image = img_lift)
+        lift_logo.pack()
         lift_logo.place(x=400, y=590)
 
     if wc == True:
         wc = Label(image = img_toilet)
+        wc_logo.pack()
         wc_logo.place(x=550, y=590)
 
     if laaden_lossen == True:
         laaden_lossen = Label(image = img_pr)
+        laaden_lossen_logo.pack()
         laaden_lossen_logo.place(x=875, y=590)
  
+
+
+
+
+
+
 root.mainloop()
 
 
