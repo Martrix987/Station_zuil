@@ -3,7 +3,6 @@ import psycopg2
 import requests
 import tkinter
 from tkinter import *
-from PIL import ImageTk, Image
 api_key = "982bf4c7313a277317a3098d5fd749df"
 
 
