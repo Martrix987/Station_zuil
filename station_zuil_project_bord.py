@@ -4,7 +4,6 @@ import requests
 import tkinter
 from tkinter import *
 from PIL import ImageTk, Image
-
 api_key = "982bf4c7313a277317a3098d5fd749df"
 
 
@@ -74,9 +73,6 @@ img_pr = PhotoImage(file='img_pr.png')
 laaden_lossen_logo = Label(master = root, image=img_pr, bg='yellow')
 
 
-
-
-
 utrecht = Button(master=root, text='Utrecht', command=click_utrecht, foreground='blue', bg='yellow',)
 utrecht.pack(pady=10)
 utrecht.place(x=440, y=360)
@@ -105,19 +101,51 @@ def berichten():
     cursor.execute(query)
     non_con_bericht = cursor.fetchall()
     conn.close()
-    print(non_con_bericht)
-    #for bericht in non_con_bericht:
-        #counter = 0
-        #counter += 50
-        #bericht = bericht['bericht']
-        #naam = naam['naam']
-        #bericht_txt = Label(master=root, text=naam, foreground='blue', font=('Helvetica', 16), bg='yellow',)
-        #bericht_txt.pack()
-        
 
-    #berichten = Label(master=root, text='con_bericht', foreground='blue', font=('Helvetica', 16), bg='yellow',)
-    #berichten.pack()
+    naam1 = non_con_bericht[0]['naam']
+    naam2 = non_con_bericht[1]['naam']
+    naam3 = non_con_bericht[2]['naam']
+    naam4 = non_con_bericht[3]['naam']
+    naam5 = non_con_bericht[4]['naam']
 
+    bericht1 = non_con_bericht[0]['bericht']
+    bericht2 = non_con_bericht[1]['bericht']
+    bericht3 = non_con_bericht[2]['bericht']
+    bericht4 = non_con_bericht[3]['bericht']
+    bericht5 = non_con_bericht[4]['bericht']
+
+    naam_berichten_txt = Label(master=root, text='Naam en berichten van onze gebruiker: ', foreground='black', font=('Arial', 12), bg='white',)
+    naam_berichten_txt.place(x=0, y=175)
+
+
+    naam1_txt = Label(master=root, text=naam1, foreground='black', font=('Arial', 8), bg='white',)
+    naam1_txt.place(x=0, y=200)
+    bericht1_txt = Label(master=root, text=bericht1, foreground='black', font=('Arial', 7), bg='white',)
+    bericht1_txt.place(x=0, y=225)
+
+    naam2_txt = Label(master=root, text=naam2, foreground='black', font=('Arial', 8), bg='white',)
+    naam2_txt.place(x=0, y=250)
+    bericht2_txt = Label(master=root, text=bericht2, foreground='black', font=('Arial', 7), bg='white',)
+    bericht2_txt.place(x=0, y=275)
+
+    naam3_txt = Label(master=root, text=naam3, foreground='black', font=('Arial', 8), bg='white',)
+    naam3_txt.place(x=0, y=300)
+    bericht3_txt = Label(master=root, text=bericht3, foreground='black', font=('Arial', 7), bg='white',)
+    bericht3_txt.place(x=0, y=325)
+
+    naam4_txt = Label(master=root, text=naam4, foreground='black', font=('Arial', 8), bg='white',)
+    naam4_txt.place(x=0, y=350)
+    bericht4_txt = Label(master=root, text=bericht4, foreground='black', font=('Arial', 7), bg='white',)
+    bericht4_txt.place(x=0, y=375)
+
+    naam5_txt = Label(master=root, text=naam5, foreground='black', font=('Arial', 8), bg='white',)
+    naam5_txt.place(x=0, y=400)
+    bericht5_txt = Label(master=root, text=bericht5, foreground='black', font=('Arial', 7), bg='white',)
+    bericht5_txt.place(x=0, y=425)
+
+
+
+    
 
 
 
